@@ -8,10 +8,11 @@ spec:
   sourceRepos:
     - '*'
   destinations:
-    # Allow apps to deploy to the microk8s2 cluster
+    # microk8s2 cluster (Test)
     - namespace: '*'
       server: https://192.168.4.96:16443
-    # Allow root-level apps to deploy to the ArgoCD management cluster
+
+    # Management cluster (for root-level apps)
     - namespace: argocd
       server: https://kubernetes.default.svc
   clusterResourceWhitelist:
