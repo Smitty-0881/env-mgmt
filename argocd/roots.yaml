@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microk8s1-root
+  namespace: argocd
+spec:
+  project: dev
+  source:
+    repoURL: https://github.com/Smitty-0881/env-microk8s1.git
+    targetRevision: main
+    path: argocd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microk8s2-root
+  namespace: argocd
+spec:
+  project: test
+  source:
+    repoURL: https://github.com/Smitty-0881/env-microk8s2.git
+    targetRevision: main
+    path: argocd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

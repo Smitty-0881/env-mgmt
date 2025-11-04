@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: dev
+  namespace: argocd
+spec:
+  description: Dev environment project
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: '*'
+      server: https://192.168.4.95:16443   # microk8s1
+    - namespace: argocd
+      server: https://kubernetes.default.svc  # management cluster for roots
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
